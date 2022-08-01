@@ -4,6 +4,7 @@ import com.ApiPortfolio.SpringBoot.repository.EducacionRepository;
 import com.ApiPortfolio.SpringBoot.repository.ExperienciaRepository;
 import com.ApiPortfolio.SpringBoot.repository.HabilidadRepository;
 import com.ApiPortfolio.SpringBoot.repository.ProyectoRepository;
+import com.ApiPortfolio.SpringBoot.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
