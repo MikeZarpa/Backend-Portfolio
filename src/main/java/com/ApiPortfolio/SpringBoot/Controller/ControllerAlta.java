@@ -12,8 +12,6 @@ import com.ApiPortfolio.SpringBoot.service.IProyectoService;
 import com.ApiPortfolio.SpringBoot.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,13 +30,8 @@ public class ControllerAlta {
     @Autowired
     private IEducacionService educacionService;
     
-    @GetMapping("/Saludar/{nombre}")
-    public String Saludar(@PathVariable String nombre){
-        return "Hola "+nombre;
-    }
         @PostMapping("/new/Usuario")
     public void altaUsuario(@RequestBody Usuario usuario){
-        System.out.print("Funciona Usuario");
         usuarioService.save(usuario);
     }
 
@@ -50,7 +43,6 @@ public class ControllerAlta {
         catch(DataIntegrityViolationException e){
             return "Ocurrió un error, ten encuenta que no puedes usar más de 255 caracteres o que el id de usuario debe ser valido.";
         }
-
         return("Nueva habilidad creada");         
     }
     
@@ -62,7 +54,6 @@ public class ControllerAlta {
         catch(DataIntegrityViolationException e){
             return "Ocurrió un error, ten encuenta que no puedes usar más de 255 caracteres o que el id de usuario debe ser valido.";
         }
-
         return("Nueva experiencia creada");         
     }
     
@@ -86,7 +77,6 @@ public class ControllerAlta {
         catch(DataIntegrityViolationException e){
             return "Ocurrió un error, ten encuenta que no puedes usar más de 255 caracteres o que el id de usuario debe ser valido.";
         }
-
         return("Nueva educacion creada");  
     }
 }
