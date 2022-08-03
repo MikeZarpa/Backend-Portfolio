@@ -7,22 +7,22 @@ import lombok.Setter;
 
 @Getter @Setter
 public class ExperienciaDTO {
-    private List<Experiencia> experiencias;
+    private List<Experiencia> datos;
     private Long id_usuario;
 
     public ExperienciaDTO() {
     }
 
     public ExperienciaDTO(List<Experiencia> experiencias, Long id_usuario) {
-        this.experiencias = experiencias;
+        this.datos = experiencias;
         this.id_usuario = id_usuario;
     }
     
 
     public List<Experiencia> obtenerDatosInicializandoUsuario(){
-        for (int i = 0; i < experiencias.size(); i++) {
-            experiencias.get(i).setId_usuarioById(id_usuario);
+        for (int i = 0; i < datos.size(); i++) {
+            datos.get(i).setId_usuarioById(id_usuario);
         }
-        return experiencias;
+        return datos;
     }
 }

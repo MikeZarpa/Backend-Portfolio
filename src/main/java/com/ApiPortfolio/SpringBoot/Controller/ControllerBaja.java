@@ -5,8 +5,10 @@ import com.ApiPortfolio.SpringBoot.repository.ExperienciaRepository;
 import com.ApiPortfolio.SpringBoot.repository.HabilidadRepository;
 import com.ApiPortfolio.SpringBoot.repository.ProyectoRepository;
 import com.ApiPortfolio.SpringBoot.repository.UsuarioRepository;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -25,28 +27,27 @@ public class ControllerBaja {
     private ProyectoRepository proyectoRepo;
     
     @DeleteMapping("/delete/Usuario")
-    public void borrarUsuario(Long id){
+    public void borrarUsuario(@RequestBody Long id){
         usuarioRepo.deleteById(id);
-    }
-    
+    }    
+
     @DeleteMapping("/delete/Habilidad")
-    public void borrarHabilidad(Long id){
-        habilidadRepo.deleteById(id);
+    public void borrarHabilidad(@RequestBody ArrayList<Long> ids){
+        habilidadRepo.deleteAllById(ids);
     }
     
     @DeleteMapping("/delete/Experiencia")
-    public void borrarExperiencia(Long id){
-        experienciaRepo.deleteById(id);
+    public void borrarExperiencia(@RequestBody ArrayList<Long> ids){
+        experienciaRepo.deleteAllById(ids);
     }
     
     @DeleteMapping("/delete/Proyecto")
-    public void borrarProyecto(Long id){
-        proyectoRepo.deleteById(id);
+    public void borrarProyecto(@RequestBody ArrayList<Long> ids){
+        proyectoRepo.deleteAllById(ids);
     }
     
     @DeleteMapping("/delete/Educacion")
-    public void borrarEducacion(Long id){
-        educacionRepo.deleteById(id);
-    }
-    
+    public void borrarEducacion(@RequestBody ArrayList<Long> ids){
+        educacionRepo.deleteAllById(ids);
+    }    
 }
