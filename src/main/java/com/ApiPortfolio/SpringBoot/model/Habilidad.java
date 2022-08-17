@@ -16,7 +16,7 @@ import lombok.Setter;
 @Entity
 @Setter
 //No usamos @Getter puesto que no queremos que se devuelva el usuario
-public class Habilidad {
+public class Habilidad implements IComponentes {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;

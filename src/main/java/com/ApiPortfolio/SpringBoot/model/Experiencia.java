@@ -13,7 +13,7 @@ import lombok.Setter;
 @Entity
 @Setter
 //No usamos @Getter  puesto que no queremos que se devuelva el usuario
-public class Experiencia {
+public class Experiencia implements IComponentes {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;

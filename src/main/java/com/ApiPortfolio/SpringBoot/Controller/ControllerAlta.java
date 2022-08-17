@@ -1,9 +1,10 @@
 package com.ApiPortfolio.SpringBoot.Controller;
 
-import com.ApiPortfolio.SpringBoot.DTO.EducacionDTO;
-import com.ApiPortfolio.SpringBoot.DTO.ExperienciaDTO;
-import com.ApiPortfolio.SpringBoot.DTO.HabilidadDTO;
-import com.ApiPortfolio.SpringBoot.DTO.ProyectoDTO;
+import com.ApiPortfolio.SpringBoot.DTO.DatosDTO;
+import com.ApiPortfolio.SpringBoot.model.Educacion;
+import com.ApiPortfolio.SpringBoot.model.Experiencia;
+import com.ApiPortfolio.SpringBoot.model.Habilidad;
+import com.ApiPortfolio.SpringBoot.model.Proyecto;
 import com.ApiPortfolio.SpringBoot.model.Usuario;
 import com.ApiPortfolio.SpringBoot.service.IEducacionService;
 import com.ApiPortfolio.SpringBoot.service.IExperienciaService;
@@ -13,7 +14,6 @@ import com.ApiPortfolio.SpringBoot.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,9 +54,9 @@ public class ControllerAlta {
     }
 
     @PostMapping("/save/Habilidad")    
-    public String altaHabilidad(@RequestBody HabilidadDTO habilidadDTO){
+    public String altaHabilidad(@RequestBody DatosDTO<Habilidad> datosDTO){
         try{            
-            habilidadService.save(habilidadDTO.obtenerDatosInicializandoUsuario());
+            habilidadService.save(datosDTO.obtenerDatosInicializandoUsuario());
         }
         catch(DataIntegrityViolationException e){
             return "Ocurrió un error, ten encuenta que no puedes usar más de 255 caracteres o que el id de usuario debe ser valido.";
@@ -65,9 +65,9 @@ public class ControllerAlta {
     }
     
     @PostMapping("/save/Experiencia")
-    public String altaExperiencia(@RequestBody ExperienciaDTO experienciaDTO){
+    public String altaExperiencia(@RequestBody DatosDTO<Experiencia> datosDTO){
         try{            
-            experienciaService.save(experienciaDTO.obtenerDatosInicializandoUsuario());
+            experienciaService.save(datosDTO.obtenerDatosInicializandoUsuario());
         }
         catch(DataIntegrityViolationException e){
             return "Ocurrió un error, ten encuenta que no puedes usar más de 255 caracteres o que el id de usuario debe ser valido.";
@@ -76,9 +76,9 @@ public class ControllerAlta {
     }
     
     @PostMapping("/save/Proyecto")
-    public String altaProyecto(@RequestBody ProyectoDTO proyectoDTO){
+    public String altaProyecto(@RequestBody DatosDTO<Proyecto> datosDTO){
         try{            
-            proyectoService.save(proyectoDTO.obtenerDatosInicializandoUsuario());
+            proyectoService.save(datosDTO.obtenerDatosInicializandoUsuario());
         }
         catch(DataIntegrityViolationException e){
             return "Ocurrió un error, ten encuenta que no puedes usar más de 255 caracteres o que el id de usuario debe ser valido.";
@@ -87,9 +87,9 @@ public class ControllerAlta {
     }
    
     @PostMapping("/save/Educacion")
-    public String altaEducacion(@RequestBody EducacionDTO educacionDTO){
+    public String altaEducacion(@RequestBody DatosDTO<Educacion> datosDTO){
         try{            
-            educacionService.save(educacionDTO.obtenerDatosInicializandoUsuario());
+            educacionService.save(datosDTO.obtenerDatosInicializandoUsuario());
         }
         catch(DataIntegrityViolationException e){
             return "Ocurrió un error, ten encuenta que no puedes usar más de 255 caracteres o que el id de usuario debe ser valido.";
