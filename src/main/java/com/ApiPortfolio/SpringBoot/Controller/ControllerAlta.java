@@ -4,11 +4,13 @@ import com.ApiPortfolio.SpringBoot.DTO.DatosDTO;
 import com.ApiPortfolio.SpringBoot.model.Educacion;
 import com.ApiPortfolio.SpringBoot.model.Experiencia;
 import com.ApiPortfolio.SpringBoot.model.Habilidad;
+import com.ApiPortfolio.SpringBoot.model.OnlyUsuario;
 import com.ApiPortfolio.SpringBoot.model.Proyecto;
 import com.ApiPortfolio.SpringBoot.model.Usuario;
 import com.ApiPortfolio.SpringBoot.service.IEducacionService;
 import com.ApiPortfolio.SpringBoot.service.IExperienciaService;
 import com.ApiPortfolio.SpringBoot.service.IHabilidadService;
+import com.ApiPortfolio.SpringBoot.service.IOnlyUsuarioService;
 import com.ApiPortfolio.SpringBoot.service.IProyectoService;
 import com.ApiPortfolio.SpringBoot.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,10 +49,16 @@ public class ControllerAlta {
     private IProyectoService proyectoService;    
     @Autowired
     private IEducacionService educacionService;
+    @Autowired
+    private IOnlyUsuarioService onlyUsuarioService;
     
     @PostMapping("/save/Usuario")
     public void altaUsuario(@RequestBody Usuario usuario){
         usuarioService.save(usuario);
+    }
+        @PostMapping("/save/OnlyUsuario")
+    public void altaOnlyUsuario(@RequestBody OnlyUsuario usuario){
+        onlyUsuarioService.save(usuario);
     }
 
     @PostMapping("/save/Habilidad")    
