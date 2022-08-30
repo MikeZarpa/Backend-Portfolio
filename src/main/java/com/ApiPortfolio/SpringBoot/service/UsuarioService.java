@@ -3,10 +3,12 @@ package com.ApiPortfolio.SpringBoot.service;
 import com.ApiPortfolio.SpringBoot.model.Usuario;
 import com.ApiPortfolio.SpringBoot.repository.UsuarioRepository;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class UsuarioService implements IUsuarioService{
 
     @Autowired
