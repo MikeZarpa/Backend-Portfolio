@@ -35,9 +35,10 @@ public class ControllerAlta {
                 registry.addMapping("/delete/*").allowedOrigins("*").allowedMethods("DELETE");
                 registry.addMapping("/Usuarios").allowedOrigins("*").allowedMethods("GET");
                 registry.addMapping("/Usuarios/*").allowedOrigins("*").allowedMethods("GET");
+                registry.addMapping("/auth/*").allowedOrigins("*").allowedMethods("POST");
             }
         };
-    }   
+    }
     
     @Autowired
     private IUsuarioService usuarioService;
