@@ -23,6 +23,7 @@ public class Educacion implements IComponentes {
     private String lugarNombre;
     private String carreraNombre;
     private String periodo;
+    private String estado;
 
     public Long getId() {
         return id;
@@ -38,7 +39,10 @@ public class Educacion implements IComponentes {
     }
     public String getPeriodo() {
         return periodo;
-    }        
+    }
+    public String getEstado(){
+        return estado;
+    }
      public void setId_usuarioById(Long id_usuario){
         this.id_usuario = new Usuario(id_usuario);
     }
