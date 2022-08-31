@@ -7,6 +7,7 @@ import com.ApiPortfolio.SpringBoot.model.Habilidad;
 import com.ApiPortfolio.SpringBoot.model.OnlyUsuario;
 import com.ApiPortfolio.SpringBoot.model.Proyecto;
 import com.ApiPortfolio.SpringBoot.model.Usuario;
+import com.ApiPortfolio.SpringBoot.security.dto.Mensaje;
 import com.ApiPortfolio.SpringBoot.service.IEducacionService;
 import com.ApiPortfolio.SpringBoot.service.IExperienciaService;
 import com.ApiPortfolio.SpringBoot.service.IHabilidadService;
@@ -16,6 +17,8 @@ import com.ApiPortfolio.SpringBoot.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,55 +57,68 @@ public class ControllerAlta {
     private IOnlyUsuarioService onlyUsuarioService;
     
     @PostMapping("/save/Usuario")
-    public void altaUsuario(@RequestBody Usuario usuario){
-        usuarioService.save(usuario);
+    public ResponseEntity<?> altaUsuario(@RequestBody Usuario usuario){
+        try{  
+            usuarioService.save(usuario);
+        }
+        catch(Exception e){
+            return new ResponseEntity(new Mensaje("Error en los datos."),HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity(new Mensaje("Usuario Salvado."),HttpStatus.CREATED);
     }
         @PostMapping("/save/OnlyUsuario")
-    public void altaOnlyUsuario(@RequestBody OnlyUsuario usuario){
-        onlyUsuarioService.save(usuario);
+    public ResponseEntity<?> altaOnlyUsuario(@RequestBody OnlyUsuario usuario){
+        try{
+            onlyUsuarioService.save(usuario);
+        }
+        catch(Exception e){
+            return new ResponseEntity(new Mensaje("Error en los datos."),HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity(new Mensaje("Usuario Salvado."),HttpStatus.CREATED);
+        
     }
 
     @PostMapping("/save/Habilidad")    
-    public String altaHabilidad(@RequestBody DatosDTO<Habilidad> datosDTO){
+    public ResponseEntity<?> altaHabilidad(@RequestBody DatosDTO<Habilidad> datosDTO){
         try{            
             habilidadService.save(datosDTO.obtenerDatosInicializandoUsuario());
         }
         catch(DataIntegrityViolationException e){
-            return "Ocurrió un error, ten encuenta que no puedes usar más de 255 caracteres o que el id de usuario debe ser valido.";
+            return new ResponseEntity(new Mensaje("Error en los datos."),HttpStatus.BAD_REQUEST);
         }
-        return("Nueva habilidad creada");         
+        return new ResponseEntity(new Mensaje("Habilidad Salvada."),HttpStatus.CREATED);        
     }
     
     @PostMapping("/save/Experiencia")
-    public String altaExperiencia(@RequestBody DatosDTO<Experiencia> datosDTO){
+    public ResponseEntity<?> altaExperiencia(@RequestBody DatosDTO<Experiencia> datosDTO){
         try{            
             experienciaService.save(datosDTO.obtenerDatosInicializandoUsuario());
         }
         catch(DataIntegrityViolationException e){
-            return "Ocurrió un error, ten encuenta que no puedes usar más de 255 caracteres o que el id de usuario debe ser valido.";
+            return new ResponseEntity(new Mensaje("Error en los datos."),HttpStatus.BAD_REQUEST);
         }
-        return("Nueva experiencia creada");         
+        return new ResponseEntity(new Mensaje("Experiencia Salvada."),HttpStatus.CREATED);     
     }
     
     @PostMapping("/save/Proyecto")
-    public String altaProyecto(@RequestBody DatosDTO<Proyecto> datosDTO){
+    public ResponseEntity<?> altaProyecto(@RequestBody DatosDTO<Proyecto> datosDTO){
         try{            
             proyectoService.save(datosDTO.obtenerDatosInicializandoUsuario());
         }
         catch(DataIntegrityViolationException e){
-            return "Ocurrió un error, ten encuenta que no puedes usar más de 255 caracteres o que el id de usuario debe ser valido.";
+            return new ResponseEntity(new Mensaje("Error en los datos."),HttpStatus.BAD_REQUEST);
         }
-        return("Nuevo proyecto creado");         
+        return new ResponseEntity(new Mensaje("Proyecto Salvado."),HttpStatus.CREATED);        
     }
    
     @PostMapping("/save/Educacion")
-    public String altaEducacion(@RequestBody DatosDTO<Educacion> datosDTO){
+    public ResponseEntity<?> altaEducacion(@RequestBody DatosDTO<Educacion> datosDTO){
         try{            
             educacionService.save(datosDTO.obtenerDatosInicializandoUsuario());
         }
         catch(DataIntegrityViolationException e){
-            return "Ocurrió un error, ten encuenta que no puedes usar más de 255 caracteres o que el id de usuario debe ser valido.";
+            return new ResponseEntity(new Mensaje("Error en los datos."),HttpStatus.BAD_REQUEST);
         }
-        return("Nueva educacion creada");  
+        return new ResponseEntity(new Mensaje("Educación Salvada."),HttpStatus.CREATED);
     }
 }
